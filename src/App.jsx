@@ -1,33 +1,36 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
+import NavBar from "./components/nav";
+import Slider from "./components/Slider";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
-
+  const product = {
+    name: "Fall Limited Edition Sneakers",
+    company: "sneaker company",
+    details:
+      "These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.",
+    price: "125.00",
+    oldPrice: "250.00",
+    reduction: "50%",
+    images: [
+      "/product/image-product-1.jpg",
+      "/product/image-product-2.jpg",
+      "/product/image-product-3.jpg",
+      "/product/image-product-4.jpg",
+    ],
+    thumbnails: [
+      "/product/image-product-1-thumbnail.jpg",
+      "/product/image-product-2-thumbnail.jpg",
+      "/product/image-product-3-thumbnail.jpg",
+      "/product/image-product-4-thumbnail.jpg",
+    ],
+  };
+  const [cart, setCart] = useState([]);
   return (
-    <div className="App bg-black">
-      {/* <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p> */}
-    </div>
+    <>
+      <NavBar />
+      <Slider product={product} />
+    </>
   );
 }
 
