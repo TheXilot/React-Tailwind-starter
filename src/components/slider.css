@@ -1,0 +1,16 @@
+.btn {
+  @apply absolute top-1/2 cursor-pointer rounded-full bg-white p-3 m-0 z-50;
+}
+.left {
+  @apply left-2;
+}
+.right {
+  @apply right-2;
+}
+.btn:hover path {
+  @apply stroke-orange-500;
+}
+.slider img {
+  transition: opacity 1s ease-in-out;
+  @apply absolute inset-0;
+}
