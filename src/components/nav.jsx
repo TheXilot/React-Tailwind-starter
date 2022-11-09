@@ -1,6 +1,7 @@
 import imageAvatar from "../assets/image-avatar.png";
 import cardIcon from "../assets/icon-cart.svg";
 import { useState } from "react";
+import Cart from "./Cart";
 export default function NavBar() {
   const navigation = [
     { name: "Collections", href: "#", current: true },
@@ -14,7 +15,7 @@ export default function NavBar() {
     return classes.filter(Boolean).join(" ");
   }
   return (
-    <div className=" w-full flex flex-row gap-2 border-[rgba(0,0,0,0.5)] border-b-[1px] items-center py-4 px-4 sm:pt-8 sm:pb-0 sm:px-0">
+    <div className="relative w-full flex flex-row gap-2 border-[rgba(0,0,0,0.5)] border-b-[1px] items-center py-4 px-4 sm:pt-8 sm:pb-0 sm:px-0">
       <button
         className="mr-4 sm:hidden"
         type="button"
@@ -39,7 +40,7 @@ export default function NavBar() {
       <div
         className={classNames(
           menuStat ? " " : "hidden",
-          "absolute top-0 left-0 h-screen w-[60%] z-50 bg-white sm:static sm:block sm:w-full sm:h-fit shadow-[40vw_0px_0px_0px_rgba(0,0,0,0.5)] sm:shadow-none"
+          "absolute top-0 left-0 h-screen w-[60%] z-50 sm:z-0 bg-white sm:static sm:block sm:w-full sm:h-fit shadow-[40vw_0px_0px_0px_rgba(0,0,0,0.5)] sm:shadow-none"
         )}
       >
         <div className="flex sm:flex-row sm:gap-4 flex-col pl-8 pt-4 sm:p-0">
@@ -79,7 +80,7 @@ export default function NavBar() {
         </div>
       </div>
       <div className="right-side flex items-center gap-4 ml-auto">
-        <img src={cardIcon} alt="" className=" cursor-pointer" />
+        <Cart />
         <img
           src={imageAvatar}
           alt=""

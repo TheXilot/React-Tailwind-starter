@@ -12,15 +12,15 @@ export default function Slider({ product }) {
     setImage(product.images[current]);
   }, [current]);
   return (
-    <div className="slider relative bg-orange-500  overflow-hidden">
-      <div className="images relative h-[100vw]">
+    <div className="slider relative  overflow-hidden sm:hidden">
+      <div className="images relative h-[80vw]">
         {product.images.map((item, index) => (
           <img
             src={item}
             alt=""
             key={item}
             className={classNames(
-              index !== current ? "opacity-0" : "z-40",
+              index !== current ? "opacity-0" : "z-30",
               "w-full"
             )}
           />
