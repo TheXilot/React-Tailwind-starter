@@ -2,7 +2,7 @@ import imageAvatar from "../assets/image-avatar.png";
 import cardIcon from "../assets/icon-cart.svg";
 import { useState } from "react";
 import Cart from "./Cart";
-export default function NavBar() {
+export default function NavBar({ cart, deleteProduct }) {
   const navigation = [
     { name: "Collections", href: "#", current: true },
     { name: "Men", href: "#", current: false },
@@ -80,7 +80,7 @@ export default function NavBar() {
         </div>
       </div>
       <div className="right-side flex items-center gap-4 ml-auto">
-        <Cart />
+        <Cart cart={cart} deleteProduct={deleteProduct} />
         <img
           src={imageAvatar}
           alt=""

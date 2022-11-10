@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import AddToCart from "./AddToCart";
 
-export default function Product({ product }) {
+export default function Product({ product, setCart }) {
   const [current, setCurrent] = useState(0);
   const [image, setImage] = useState(product.images[current]);
   function classNames(...classes) {
@@ -26,6 +26,7 @@ export default function Product({ product }) {
         price={product.price}
         reduction={product.reduction}
         oldPrice={product.oldPrice}
+        setCart={setCart}
       />
     </div>
   );

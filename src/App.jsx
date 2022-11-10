@@ -28,16 +28,31 @@ function App() {
     ],
   };
   const [cart, setCart] = useState([]);
+  function addProduct(nbItems, totalPrice, totalOldPrice) {
+    setCart([
+      ...cart,
+      {
+        product: product,
+        nbItems: nbItems,
+        totalPrice: totalPrice,
+        totalOldPrice: totalOldPrice,
+      },
+    ]);
+  }
+  function deleteProduct() {
+    console.log("delete ...");
+    setCart(cart.filter((v) => v.product.name !== product.name));
+  }
   return (
     <>
-      <NavBar />
+      <NavBar cart={cart} setCart={setCart} deleteProduct={deleteProduct} />
       <Slider product={product} />
       <div className="sm:flex mt-16 block gap-3 sm:items-center">
         <div className="w-1/2  px-8 hidden sm:block">
           <SliderCard product={product} />
         </div>
         <div className="w-full sm:w-1/2">
-          <Product product={product} />
+          <Product product={product} setCart={addProduct} />
         </div>
       </div>
 
