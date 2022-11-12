@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import LightBox from "./LightBox";
 import PreviousIcon from "../assets/icon-previous.svg";
 import NextIcon from "../assets/icon-next.svg";
-import "./sliderCard.css";
 
 export default function SliderCard({ product }) {
   const [current, setCurrent] = useState(0);
   const [image, setImage] = useState(product.images[current]);
+  const [showBox, setShowBox] = useState(false);
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
@@ -14,6 +15,7 @@ export default function SliderCard({ product }) {
   }, [current]);
   return (
     <div className="slider relative overflow-hidden">
+      {showBox && <LightBox product={product} isShowBox={setShowBox} />}
       <div className="images relative h-[80vw] max-h-[380px]">
         {product.images.map((item, index) => (
           <img
@@ -22,8 +24,9 @@ export default function SliderCard({ product }) {
             key={item}
             className={classNames(
               index !== current ? "opacity-0" : "z-30",
-              "w-full"
+              "w-full cursor-pointer"
             )}
+            onClick={() => setShowBox(true)}
           />
         ))}
       </div>

@@ -27,11 +27,11 @@ export default function Cart({ cart, deleteProduct }) {
       </button>
       {isComponentVisible && (
         <>
-          <div className="absolute w-80 bg-white rounded-lg shadow-[0px_0px_1rem_0.5px_rgba(0,0,0,0.3)] top-full right-0 z-40">
+          <div className="absolute w-80 bg-white rounded-lg shadow-[0px_0px_1rem_0.5px_rgba(0,0,0,0.3)] top-full right-0 z-40 max-h-64 overflow-y-scroll">
             <div className="cart-head p-3">
               <h3 className="text-black font-bold">Cart</h3>
             </div>
-            <div className="bg-gray-300 w-full h-[1px]"></div>
+            <div className="bg-gray-300 w-full h-[1px] "></div>
             {cart.map((item, index) => (
               <div
                 className="elements w-full p-3 grid grid-cols-1 hover:bg-gray-200"

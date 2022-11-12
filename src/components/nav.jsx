@@ -15,7 +15,7 @@ export default function NavBar({ cart, deleteProduct }) {
     return classes.filter(Boolean).join(" ");
   }
   return (
-    <div className="relative w-full flex flex-row gap-2 border-[rgba(0,0,0,0.5)] border-b-[1px] items-center py-4 px-4 sm:pt-8 sm:pb-0 sm:px-0">
+    <div className="relative w-full flex flex-row md:gap-2 border-[rgba(0,0,0,0.5)] border-b-[1px] items-center py-4 px-4 sm:pt-8 sm:pb-0 sm:px-10">
       <button
         className="mr-4 sm:hidden"
         type="button"

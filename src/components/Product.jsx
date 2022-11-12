@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import AddToCart from "./AddToCart";
-import LightBox from "./LightBox";
 
 export default function Product({ product, setCart }) {
   const [current, setCurrent] = useState(0);
@@ -31,7 +30,6 @@ export default function Product({ product, setCart }) {
           setCart={setCart}
         />
       </div>
-      <LightBox product={product} />
     </>
   );
 }
