@@ -4,12 +4,17 @@ import Pick from "./components/Pick";
 import { useSelector, useDispatch } from "react-redux";
 import { gameStart, cpuMode } from "./store/features/globalSlice";
 import Player from "./components/Player";
+import Modal from "./components/modal";
+import { isShowModal } from "./store/features/globalSlice";
 function App() {
   const startGame = useSelector(gameStart);
   const isCpuMode = useSelector(cpuMode);
+  const IsShowModal = useSelector(isShowModal);
   return (
     <>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center ">
+        {IsShowModal && <Modal />}
+        {/* <Modal /> */}
         <div className=" w-[600px] h-screen p-4 border-200 bg-primary">
           <div className="w-full h-full bg-orange-100 flex flex-col items-center justify-center gap-8 p-2 sm:p-8">
             {startGame === 0 && <Pick />}
