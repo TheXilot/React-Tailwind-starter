@@ -1,10 +1,25 @@
 import { useState } from "react";
-import NavBar from "./components/nav";
-import Slider from "./components/Slider";
-import SliderCard from "./components/SliderCard";
 import "./App.css";
+import Pick from "./components/Pick";
+import { useSelector, useDispatch } from "react-redux";
+import { gameStart, cpuMode } from "./store/features/globalSlice";
+import Player from "./components/Player";
 function App() {
-  return <>myAPP</>;
+  const startGame = useSelector(gameStart);
+  const isCpuMode = useSelector(cpuMode);
+  return (
+    <>
+      <div className="flex items-center justify-center">
+        <div className=" w-[600px] h-screen p-4 border-200 bg-primary">
+          <div className="w-full h-full bg-orange-100 flex flex-col items-center justify-center gap-8 p-2 sm:p-8">
+            {startGame === 0 && <Pick />}
+            {isCpuMode === 0 && startGame === 1 && <Player />}
+            {isCpuMode === 1 && startGame === 1 && <div>CPU</div>}
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default App;

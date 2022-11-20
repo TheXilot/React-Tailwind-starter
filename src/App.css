@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap");
+:root {
+  --primary-color: #192a32;
+  --secondary-color: #30c4be;
+  --orange-color: #f2b238;
+}
+body,
+html {
+  background-color: var(--primary-color);
+  height: 100vh;
+}
+* {
+  font-family: "Outfit", sans-serif;
+}
+.logo {
+  @apply flex gap-1;
+}
+.logo > img {
+  height: 32px;
+  width: 32px;
+}
+.toggle {
+  @apply w-full bg-primary-light;
+  box-shadow: 0px 8px 0 0 #0f212a;
+}
+.toggle svg {
+  width: 48px;
+  height: 48px;
+}
+.box {
+  @apply bg-primary-light rounded-lg p-4 sm:p-8;
+  box-shadow: 0px 8px 0 0 #0f212a;
+  /* width: 100px;
+  height: 100px; */
+}
+.toggle svg > path {
+  @apply fill-gray-bg;
+  transition: all 1s ease-in-out;
+}
+.toggle .o .btn-o svg > path {
+  @apply fill-primary-light;
+}
+.toggle .x .btn-x svg > path {
+  @apply fill-primary-light;
+}
+.toggle .btn-group {
+  @apply bg-primary items-center  h-24 hover:bg-[#0f212a];
+  position: relative;
+}
+.toggle .btn-group button {
+  z-index: 1;
+  cursor: pointer;
+  @apply h-full flex items-center;
+}
+.toggle .btn-group.o::after {
+  @apply bg-gray-bg;
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  z-index: 0;
+  transition: all 1s ease-in-out;
+  transform: translateX(100%);
+}
+.toggle .btn-group.x::after {
+  @apply bg-gray-bg;
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  z-index: 0;
+  transition: all 1s ease-in-out;
+  transform: translateX(0);
+}
