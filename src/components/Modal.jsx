@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { showModal } from "../store/features/globalSlice";
+import { showModal, setStartGame } from "../store/features/globalSlice";
 export default function Modal() {
   const ref = useRef(null);
   const dispatch = useDispatch();
@@ -20,15 +20,12 @@ export default function Modal() {
       >
         <h2 className=" text-4xl text-gray-bg">RESTART GAME</h2>
         <div className="flex justify-center gap-4">
-          <button
-            className="w-full px-4 py-2 bg-gray-bg hover:bg-gray-300 font-bold rounded-[16px] shadow-[0_8px_0_0_#6B8997]"
-            // onClick={() => dispatch(setVsCpu(1))}
-          >
+          <button className="w-full px-4 py-2 bg-gray-bg hover:bg-gray-300 font-bold rounded-[16px] shadow-[0_8px_0_0_#6B8997]">
             <i>NO, CANCEL</i>
           </button>
           <button
             className="w-full px-4 py-2 bg-orange hover:bg-orange_light font-bold rounded-[16px] shadow-[0_8px_0_0_#CC8B13]"
-            // onClick={() => dispatch(setVsCpu(0))}
+            onClick={() => dispatch(setStartGame(0))}
           >
             <i>YES, RESTART</i>
           </button>
