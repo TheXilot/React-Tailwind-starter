@@ -4,7 +4,7 @@ import Pick from "./components/Pick";
 import { useSelector, useDispatch } from "react-redux";
 import { gameStart, cpuMode } from "./store/features/globalSlice";
 import Player from "./components/Player";
-import Modal from "./components/modal";
+import Modal from "./components/Modal";
 import { isShowModal } from "./store/features/globalSlice";
 function App() {
   const startGame = useSelector(gameStart);
