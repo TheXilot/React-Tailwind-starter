@@ -44,11 +44,13 @@ html {
   /* style des box empty */
   background-image: url("../public/icon-o.svg");
   background-size: 50% 50%;
+  pointer-events: none;
 }
 .game .box.x {
   /* style des box empty */
   background-image: url("../public/icon-x.svg");
   background-size: 50% 50%;
+  pointer-events: none;
 }
 .game.turnO .box:not(.x):not(.o):hover {
   /* style des box empty */
