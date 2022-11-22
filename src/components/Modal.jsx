@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { showModal, setStartGame } from "../store/features/globalSlice";
-export default function Modal() {
+import { showModal, setStartGame, reset } from "../store/features/globalSlice";
+export default function Modal(resetmy) {
   const ref = useRef(null);
   const dispatch = useDispatch();
   return (
@@ -25,7 +25,10 @@ export default function Modal() {
           </button>
           <button
             className="w-full px-4 py-2 bg-orange hover:bg-orange_light font-bold rounded-[16px] shadow-[0_8px_0_0_#CC8B13]"
-            onClick={() => dispatch(setStartGame(0))}
+            onClick={() => {
+              dispatch(setStartGame(0));
+              resetmy();
+            }}
           >
             <i>YES, RESTART</i>
           </button>

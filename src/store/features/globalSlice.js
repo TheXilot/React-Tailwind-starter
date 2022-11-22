@@ -7,13 +7,11 @@ const initialState = {
   isShowModal: false,
   isShowModalPlayer: false,
   lastRoundWinner: -1,
-  round: {
-    roundsO: 0,
-    roundsX: 0,
-    roundsT: 0,
-  },
+  round: [0, 0, 0],
+  // roundsO: 0,
+  // roundsX: 0,
+  // roundsT: 0,
 };
-
 export const globalSlice = createSlice({
   name: "global",
   initialState,
@@ -33,12 +31,17 @@ export const globalSlice = createSlice({
     },
     setStartGame: (state, action) => {
       state.gameStart = action.payload;
+      state = initialState;
+      console.log(state);
     },
     setRound: (state, action) => {
       state.round = action.payload;
     },
     setLastRoundWinner: (state, action) => {
       state.lastRoundWinner = action.payload;
+    },
+    reset: (state) => {
+      state = initialState;
     },
   },
 });
@@ -48,6 +51,7 @@ export const isShowModal = (state) => state.global.isShowModal;
 export const isShowModalPlayer = (state) => state.global.isShowModalPlayer;
 export const lastRoundWinner = (state) => state.global.lastRoundWinner;
 export const firstPlayerMark = (state) => state.global.firstPlayerMark;
+export const round = (state) => state.global.round;
 export const {
   setFirstPlayerMark,
   setVsCpu,
@@ -56,6 +60,7 @@ export const {
   setStartGame,
   setRound,
   setLastRoundWinner,
+  reset,
 } = globalSlice.actions;
 
 export default globalSlice.reducer;

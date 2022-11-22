@@ -1,31 +1,34 @@
 import { useEffect, useRef, useState } from "react";
 import Logo from "./Logo";
 import SVG from "react-inlinesvg";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import {
   firstPlayerMark,
   setVsCpu,
   showModal,
-  isShowModal,
+  round,
   showModalPlayer,
   isShowModalPlayer,
   setLastRoundWinner,
+  setRound,
+  reset,
 } from "../store/features/globalSlice";
 import PlayerModal from "./PlayerModal";
 export default function Player() {
-  const ref = useRef(null);
   const FirstPlayerMark = useSelector(firstPlayerMark);
+  // equality function
+  const customEqual = (oldValue, newValue) =>
+    oldValue.every((value, index) => value === newValue[index]);
+  const Round = useSelector(round, customEqual);
   const dispatch = useDispatch();
   const [turn, setTurn] = useState(1);
   const [gameMap, setGameMap] = useState([-1, -1, -1, -1, -1, -1, -1, -1, -1]);
   const IsShowModalPlayer = useSelector(isShowModalPlayer);
-  const IsShowModal = useSelector(isShowModal);
   const setCel = (index, value) => {
     if (gameMap[index] === -1) {
       let t = gameMap;
       t[index] = value;
       setGameMap([...t]);
-
       console.log(t);
     }
   };
@@ -66,21 +69,34 @@ export default function Player() {
       setTimeout(() => {
         dispatch(setLastRoundWinner(turn));
         dispatch(showModalPlayer(true));
+        //round values
+        let newRound = [...Round];
+        turn === 0 ? (newRound[2] += 1) : (newRound[0] += 1);
+        dispatch(setRound(newRound));
       }, 1000);
+      return;
     }
     draw = !gameMap.includes(-1);
-    if(draw){
+    if (draw) {
       console.log("draw ", draw);
       setTimeout(() => {
         dispatch(setLastRoundWinner(-1));
         dispatch(showModalPlayer(true));
+        let newRound = [...Round];
+        newRound[1] += 1;
+        dispatch(setRound(newRound));
       }, 1000);
     }
   }, [gameMap]);
+  const reset = () => {
+    console.log("lmard");
+    let newRound = new Array([0, 0, 0]);
+    dispatch(setRound(newRound));
+  };
   // const [firstPlayerMark, setFirstPlayerMark] = useState(1);
   return (
     <div className=" flex flex-col h-full w-full">
-      {IsShowModalPlayer && <PlayerModal />}
+      {IsShowModalPlayer && <PlayerModal resetmy={reset} />}
       <div className="flex justify-between mb-8 items-center">
         <Logo />
         <div className="box flex items-center justify-center gap-1 sm:gap-4 sm:px-4 px-2 py-2">
@@ -159,18 +175,22 @@ export default function Player() {
         ></button>
       </div>
       <div className=" grid grid-cols-3 grid-rows-1 auto-cols-auto gap-x-4 gap-y-8">
-          <div className="box text-gray-300 text-xl flex flex-col items-center justify-center px-4 py-2 bg-orange">
-          <h3 className=" text-black text-md font-light">O (YOU)</h3>
-          <b className=" text-black text-2xl">0</b>
+        <div className="box text-gray-300 text-xl flex flex-col items-center justify-center px-4 py-2 bg-orange">
+          <h3 className=" text-black text-sm sm:text-md font-light">
+            O {FirstPlayerMark === 1 ? "(1PL)" : "(2PL)"}
+          </h3>
+          <b className=" text-black text-2xl">{Round[0]}</b>
         </div>
-        
+
         <div className="box text-gray-300 text-xl flex flex-col items-center justify-center px-4 py-2 bg-gray-bg">
-          <h3 className=" text-black text-md font-light">TIES</h3>
-          <b className=" text-black text-2xl">0</b>
+          <h3 className=" text-black text-sm sm:text-md font-light">TIES</h3>
+          <b className=" text-black text-2xl">{Round[1]}</b>
         </div>
-        <div className="box text-gray-300 text-xl flex flex-col items-center justify-center px-4 py-2 bg-secondary">
-          <h3 className=" text-black text-md font-light">X (CPU)</h3>
-          <b className=" text-black text-2xl">0</b>
+        <div className="box text-gray-300 text-xl flex flex-col items-center justify-center sm:px-4 px-1 py-2 bg-secondary">
+          <h3 className=" text-black text-sm sm:text-md font-light">
+            X {FirstPlayerMark === 0 ? "(1PL)" : "(2PL)"}
+          </h3>
+          <b className=" text-black text-2xl">{Round[2]}</b>
         </div>
       </div>
     </div>
