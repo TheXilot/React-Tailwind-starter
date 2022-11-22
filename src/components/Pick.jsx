@@ -4,12 +4,12 @@ import SVG from "react-inlinesvg";
 import { useSelector, useDispatch } from "react-redux";
 import {
   setFirstPlayerMark,
-  selectMark,
+  firstPlayerMark,
   setVsCpu,
 } from "../store/features/globalSlice";
 export default function Pick() {
-  const firstPlayerMark = useSelector(selectMark);
   const dispatch = useDispatch();
+  const FirstPlayerMark = useSelector(firstPlayerMark);
   // const [firstPlayerMark, setFirstPlayerMark] = useState(1);
   return (
     <div className="w-full h-full bg-orange-100 flex flex-col items-center justify-center gap-8 p-2 sm:p-8">
@@ -18,7 +18,7 @@ export default function Pick() {
         <h2 className=" text-gray-300 text-xl">PICK PLAYER 1’S MARK</h2>
         <div
           className={`flex w-full mt-4 btn-group ${
-            firstPlayerMark ? "o" : "x"
+            FirstPlayerMark ? "o" : "x"
           }`}
         >
           <button

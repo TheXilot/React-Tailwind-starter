@@ -42,12 +42,12 @@ export const globalSlice = createSlice({
     },
   },
 });
-export const selectMark = (state) => state.global.firstPlayerMark;
 export const gameStart = (state) => state.global.gameStart;
 export const cpuMode = (state) => state.global.vsCpu;
 export const isShowModal = (state) => state.global.isShowModal;
 export const isShowModalPlayer = (state) => state.global.isShowModalPlayer;
 export const lastRoundWinner = (state) => state.global.lastRoundWinner;
+export const firstPlayerMark = (state) => state.global.firstPlayerMark;
 export const {
   setFirstPlayerMark,
   setVsCpu,

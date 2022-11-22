@@ -3,8 +3,7 @@ import Logo from "./Logo";
 import SVG from "react-inlinesvg";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  setFirstPlayerMark,
-  selectMark,
+  firstPlayerMark,
   setVsCpu,
   showModal,
   isShowModal,
@@ -15,7 +14,7 @@ import {
 import PlayerModal from "./PlayerModal";
 export default function Player() {
   const ref = useRef(null);
-  const firstPlayerMark = useSelector(selectMark);
+  const FirstPlayerMark = useSelector(firstPlayerMark);
   const dispatch = useDispatch();
   const [turn, setTurn] = useState(1);
   const [gameMap, setGameMap] = useState([-1, -1, -1, -1, -1, -1, -1, -1, -1]);
@@ -52,6 +51,7 @@ export default function Player() {
     //detect if some one win
     //detect axe /
     let win = 0;
+    let draw = 0;
     win =
       verifyWin(0, 4, 8) ||
       verifyWin(2, 4, 6) ||
@@ -68,6 +68,14 @@ export default function Player() {
         dispatch(showModalPlayer(true));
       }, 1000);
     }
+    draw = !gameMap.includes(-1);
+    if(draw){
+      console.log("draw ", draw);
+      setTimeout(() => {
+        dispatch(setLastRoundWinner(-1));
+        dispatch(showModalPlayer(true));
+      }, 1000);
+    }
   }, [gameMap]);
   // const [firstPlayerMark, setFirstPlayerMark] = useState(1);
   return (
@@ -75,7 +83,7 @@ export default function Player() {
       {IsShowModalPlayer && <PlayerModal />}
       <div className="flex justify-between mb-8 items-center">
         <Logo />
-        <div className="box flex items-center justify-center gap-4 px-4 py-2">
+        <div className="box flex items-center justify-center gap-1 sm:gap-4 sm:px-4 px-2 py-2">
           <img
             src={`/public/icon-${turn ? "o" : "x"}-grey.svg`}
             alt=""
@@ -151,10 +159,11 @@ export default function Player() {
         ></button>
       </div>
       <div className=" grid grid-cols-3 grid-rows-1 auto-cols-auto gap-x-4 gap-y-8">
-        <div className="box text-gray-300 text-xl flex flex-col items-center justify-center px-4 py-2 bg-orange">
+          <div className="box text-gray-300 text-xl flex flex-col items-center justify-center px-4 py-2 bg-orange">
           <h3 className=" text-black text-md font-light">O (YOU)</h3>
           <b className=" text-black text-2xl">0</b>
         </div>
+        
         <div className="box text-gray-300 text-xl flex flex-col items-center justify-center px-4 py-2 bg-gray-bg">
           <h3 className=" text-black text-md font-light">TIES</h3>
           <b className=" text-black text-2xl">0</b>

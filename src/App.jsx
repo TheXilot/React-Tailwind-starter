@@ -15,8 +15,8 @@ function App() {
       <div className="flex items-center justify-center ">
         {IsShowModal && <Modal />}
         {/* <Modal /> */}
-        <div className=" w-[600px] h-screen p-4 border-200 bg-primary">
-          <div className="w-full h-full bg-orange-100 flex flex-col items-center justify-center gap-8 p-2 sm:p-8">
+        <div className=" w-[600px] h-screen sm:p-4 p-2 border-200 bg-primary">
+          <div className="w-full h-full bg-orange-100 flex flex-col items-center justify-center xs:p-2 gap-8 sm:p-8">
             {startGame === 0 && <Pick />}
             {isCpuMode === 0 && startGame === 1 && <Player />}
             {isCpuMode === 1 && startGame === 1 && <div>CPU</div>}
