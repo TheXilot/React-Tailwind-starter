@@ -6,6 +6,7 @@ import {
   setFirstPlayerMark,
   firstPlayerMark,
   setVsCpu,
+  round,
 } from "../store/features/globalSlice";
 export default function Pick() {
   const dispatch = useDispatch();

@@ -1,27 +1,25 @@
-import { useEffect, useRef, useState } from "react";
-import Logo from "./Logo";
-import SVG from "react-inlinesvg";
-import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import { useEffect, useState } from "react";
+import Logo from "../Logo";
+import { useSelector, useDispatch } from "react-redux";
 import {
   firstPlayerMark,
-  setVsCpu,
   showModal,
   round,
   showModalPlayer,
   isShowModalPlayer,
   setLastRoundWinner,
   setRound,
-  reset,
-} from "../store/features/globalSlice";
-import PlayerModal from "./PlayerModal";
+} from "../../store/features/globalSlice";
+import PlayerModal from "../Player/PlayerModal";
 export default function Player() {
   const FirstPlayerMark = useSelector(firstPlayerMark);
+  let [NewGame, setNewGame] = useState(true);
   // equality function
   const customEqual = (oldValue, newValue) =>
     oldValue.every((value, index) => value === newValue[index]);
   const Round = useSelector(round, customEqual);
   const dispatch = useDispatch();
-  const [turn, setTurn] = useState(1);
+  const [turn, setTurn] = useState(0);
   const [gameMap, setGameMap] = useState([-1, -1, -1, -1, -1, -1, -1, -1, -1]);
   const IsShowModalPlayer = useSelector(isShowModalPlayer);
   const setCel = (index, value) => {
@@ -48,9 +46,21 @@ export default function Player() {
     }
     return 0;
   };
+  const resetGameMap = () => {
+    setGameMap([-1, -1, -1, -1, -1, -1, -1, -1, -1]);
+    // setTurn(0);
+  };
   useEffect(() => {
-    console.log("useeffect");
-    if (!gameMap.every((e) => e === -1)) setTurn(turn ? 0 : 1);
+    // console.log("useeffect");
+    // console.log("NewGame", NewGame);
+    if (NewGame) {
+      dispatch(setRound([0, 0, 0]));
+      setNewGame(false);
+    }
+
+    if (!gameMap.every((e) => e === -1)) {
+      setTurn(turn ? 0 : 1);
+    }
     //detect if some one win
     //detect axe /
     let win = 0;
@@ -88,15 +98,10 @@ export default function Player() {
       }, 1000);
     }
   }, [gameMap]);
-  const reset = () => {
-    console.log("lmard");
-    let newRound = new Array([0, 0, 0]);
-    dispatch(setRound(newRound));
-  };
   // const [firstPlayerMark, setFirstPlayerMark] = useState(1);
   return (
     <div className=" flex flex-col h-full w-full">
-      {IsShowModalPlayer && <PlayerModal resetmy={reset} />}
+      {IsShowModalPlayer && <PlayerModal resetGameMap={resetGameMap} />}
       <div className="flex justify-between mb-8 items-center">
         <Logo />
         <div className="box flex items-center justify-center gap-1 sm:gap-4 sm:px-4 px-2 py-2">

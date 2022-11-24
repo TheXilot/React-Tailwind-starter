@@ -32,16 +32,12 @@ export const globalSlice = createSlice({
     setStartGame: (state, action) => {
       state.gameStart = action.payload;
       state = initialState;
-      console.log(state);
     },
     setRound: (state, action) => {
       state.round = action.payload;
     },
     setLastRoundWinner: (state, action) => {
       state.lastRoundWinner = action.payload;
-    },
-    reset: (state) => {
-      state = initialState;
     },
   },
 });
@@ -60,7 +56,6 @@ export const {
   setStartGame,
   setRound,
   setLastRoundWinner,
-  reset,
 } = globalSlice.actions;
 
 export default globalSlice.reducer;

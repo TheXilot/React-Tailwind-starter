@@ -4,8 +4,8 @@ import {
   showModalPlayer,
   setStartGame,
   lastRoundWinner,
-} from "../store/features/globalSlice";
-export default function PlayerModal(resetmy) {
+} from "../../store/features/globalSlice";
+export default function PlayerModal({ resetGameMap }) {
   const ref = useRef(null);
   const dispatch = useDispatch();
   const LastRoundWinner = useSelector(lastRoundWinner);
@@ -66,14 +66,16 @@ export default function PlayerModal(resetmy) {
           <button
             className=" px-4 py-2 bg-gray-bg hover:bg-gray-300 font-bold rounded-[16px] shadow-[0_8px_0_0_#6B8997]"
             onClick={() => {
-              resetmy();
               dispatch(showModalPlayer(false));
               dispatch(setStartGame(0));
             }}
           >
             <i>QUIT</i>
           </button>
-          <button className=" px-4 py-2 bg-orange hover:bg-orange_light font-bold rounded-[16px] shadow-[0_8px_0_0_#CC8B13]">
+          <button
+            className=" px-4 py-2 bg-orange hover:bg-orange_light font-bold rounded-[16px] shadow-[0_8px_0_0_#CC8B13]"
+            onClick={() => resetGameMap()}
+          >
             <i>NEXT ROUND</i>
           </button>
         </div>
