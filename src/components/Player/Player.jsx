@@ -106,7 +106,7 @@ export default function Player() {
         <Logo />
         <div className="box flex items-center justify-center gap-1 sm:gap-4 sm:px-4 px-2 py-2">
           <img
-            src={`/public/icon-${turn ? "o" : "x"}-grey.svg`}
+            src={`/icon-${turn ? "o" : "x"}-grey.svg`}
             alt=""
             className=" w-8 h-8"
           />
@@ -116,7 +116,7 @@ export default function Player() {
           className="box px-4 py-2 bg-gray-bg"
           onClick={() => dispatch(showModal(true))}
         >
-          <img src="/public/icon-restart.svg" alt="" className=" w-6 h-6" />
+          <img src="/icon-restart.svg" alt="" className=" w-6 h-6" />
         </button>
       </div>
       <div
