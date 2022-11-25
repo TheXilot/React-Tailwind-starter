@@ -31,6 +31,9 @@ html {
   @apply bg-primary-light rounded-lg;
   box-shadow: 0px 8px 0 0 #0f212a;
 }
+.game.disabled {
+  pointer-events: none;
+}
 .game .box {
   transition: all 0.5s ease-in-out;
   background-repeat: no-repeat;

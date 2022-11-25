@@ -6,6 +6,7 @@ import { gameStart, cpuMode } from "./store/features/globalSlice";
 import Player from "./components/Player/Player";
 import Modal from "./components/Modal";
 import { isShowModal } from "./store/features/globalSlice";
+import Cpu from "./components/Cpu/Cpu";
 function App() {
   const startGame = useSelector(gameStart);
   const isCpuMode = useSelector(cpuMode);
@@ -19,7 +20,7 @@ function App() {
           <div className="w-full h-full bg-orange-100 flex flex-col items-center justify-center xs:p-2 gap-8 sm:p-8">
             {startGame === 0 && <Pick />}
             {isCpuMode === 0 && startGame === 1 && <Player />}
-            {isCpuMode === 1 && startGame === 1 && <div>CPU</div>}
+            {isCpuMode === 1 && startGame === 1 && <Cpu />}
           </div>
         </div>
       </div>

@@ -10,8 +10,8 @@ import {
   setLastRoundWinner,
   setRound,
 } from "../../store/features/globalSlice";
-import PlayerModal from "../Player/PlayerModal";
-export default function Player() {
+import CpuModal from "../Cpu/CpuModal";
+export default function Cpu() {
   const FirstPlayerMark = useSelector(firstPlayerMark);
   let [NewGame, setNewGame] = useState(true);
   // equality function
@@ -28,7 +28,6 @@ export default function Player() {
     table.map((el) => {
       cl = `${cl} ${el}`;
     });
-    console.log(cl);
     return cl;
   }
   const setCel = (index, value) => {
@@ -71,6 +70,7 @@ export default function Player() {
     if (!gameMap.every((e) => e === -1)) {
       setTurn(turn ? 0 : 1);
     }
+
     //detect if some one win
     //detect axe /
     let win = 0;
@@ -107,12 +107,17 @@ export default function Player() {
         dispatch(setRound(newRound));
       }, 1000);
     }
+    //logic of CPU moves
+    if (turn === FirstPlayerMark) {
+      console.log("CPI");
+    }
+    //logic of CPU moves
     setVerify(false);
   }, [gameMap]);
   // const [firstPlayerMark, setFirstPlayerMark] = useState(1);
   return (
     <div className=" flex flex-col h-full w-full">
-      {IsShowModalPlayer && <PlayerModal resetGameMap={resetGameMap} />}
+      {IsShowModalPlayer && <CpuModal resetGameMap={resetGameMap} />}
       <div className="flex justify-between mb-8 items-center">
         <Logo />
         <div className="box flex items-center justify-center gap-1 sm:gap-4 sm:px-4 px-2 py-2">
