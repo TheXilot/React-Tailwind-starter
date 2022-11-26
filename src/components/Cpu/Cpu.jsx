@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useEffectOnce } from "./../../hooks/useEffectOnce";
 import Logo from "../Logo";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -66,11 +67,6 @@ export default function Cpu() {
       dispatch(setRound([0, 0, 0]));
       setNewGame(false);
     }
-
-    if (!gameMap.every((e) => e === -1)) {
-      setTurn(turn ? 0 : 1);
-    }
-
     //detect if some one win
     //detect axe /
     let win = 0;
@@ -107,13 +103,26 @@ export default function Cpu() {
         dispatch(setRound(newRound));
       }, 1000);
     }
-    //logic of CPU moves
-    if (turn === FirstPlayerMark) {
-      console.log("CPI");
-    }
-    //logic of CPU moves
     setVerify(false);
+    if (!gameMap.every((e) => e === -1)) {
+      setTurn(turn ? 0 : 1);
+    }
   }, [gameMap]);
+
+  useEffect(() => {
+    if (turn !== FirstPlayerMark) {
+      console.log("CPI");
+      let t = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+      let numbers = [];
+      t.map((v, i) => {
+        if (gameMap[i] === -1) numbers.push(t[i]);
+      });
+      let index = Math.floor(Math.random() * numbers.length);
+      console.log(numbers);
+      console.log("next cel is :", numbers[index]);
+      setCel(numbers[index], turn);
+    }
+  }, [turn]);
   // const [firstPlayerMark, setFirstPlayerMark] = useState(1);
   return (
     <div className=" flex flex-col h-full w-full">
